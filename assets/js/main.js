@@ -436,18 +436,39 @@ function initWeatherWidget() {
    Phase 1 has no backend, so this simulates a submission and shows
    a confirmation message. Wire up a real endpoint here in Phase 2.
 ------------------------------ */
+/* -----------------------------
+   Form handling (contact + newsletter)
+------------------------------ */
 function initForms() {
   document.querySelectorAll('form[data-form]').forEach((form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
       const status = form.querySelector('.form-status');
-      const name = form.dataset.form === 'contact' ? 'message' : 'subscription';
+      const type = form.dataset.form === 'contact' ? 'message' : 'subscription';
+
+      // Contact form validation
+      if (type === 'message') {
+        const name = form.querySelector('#name')?.value.trim();
+        const email = form.querySelector('#email')?.value.trim();
+        const phone = form.querySelector('#phone')?.value.trim();
+        const interest = form.querySelector('#interest')?.value;
+
+        if (!name || !email || !phone || !interest) {
+          if (status) {
+            status.textContent = 'Please fill in all required fields.';
+            status.classList.add('is-visible');
+          }
+          return;
+        }
+      }
 
       if (status) {
         status.textContent =
-          name === 'message'
+          type === 'message'
             ? "Thanks — your message is in. We'll reply within 24 hours."
             : "You're on the list. Watch your inbox for Red Sea updates.";
+
         status.classList.add('is-visible');
       }
 
