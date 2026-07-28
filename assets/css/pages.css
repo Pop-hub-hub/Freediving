@@ -1,0 +1,540 @@
+/* ==========================================================================
+   MARSA ALAM FREEDIVERS — PAGE-SPECIFIC STYLES
+   ========================================================================== */
+
+/* -----------------------------
+   HERO (Home)
+------------------------------ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background: var(--gradient-depth);
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__media video,
+.hero__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+.hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,59,115,0.35) 0%, rgba(0,59,115,0.20) 40%, rgba(0,59,115,0.75) 100%);
+}
+
+.hero__media .media-placeholder {
+  background: transparent;
+  min-height: 100%;
+}
+.hero__media .media-placeholder::before {
+  background-image: none;
+}
+.hero__media .media-placeholder span {
+  border: none;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 0;
+  border-radius: 0;
+}
+.hero__media .media-placeholder span img {
+  opacity: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: var(--space-xl);
+  align-items: end;
+  padding-block: 8rem 4rem;
+}
+
+.hero__headline {
+  font-size: var(--fs-hero);
+  color: var(--color-white);
+  margin-bottom: var(--space-md);
+}
+.hero__headline em {
+  font-style: normal;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__sub { max-width: 46ch; font-size: 1.1rem; color: rgba(255,255,255,0.82); margin-bottom: var(--space-md); }
+
+.hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: var(--space-lg); }
+
+.hero__gauge-wrap { padding-bottom: 0.5rem; }
+.hero__gauge-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); margin-bottom: var(--space-sm); }
+
+.weather-widget {
+  padding: 1.4rem;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 22px 50px rgba(0, 22, 43, 0.28);
+}
+
+.weather-widget__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.weather-widget__eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.68);
+}
+
+.weather-widget__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: var(--color-white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.weather-widget__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.weather-widget__city,
+.weather-widget__condition,
+.weather-widget__status,
+.weather-widget__meta {
+  margin: 0;
+}
+
+.weather-widget__city {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.weather-widget__temp {
+  margin: 0.35rem 0 0.15rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  color: var(--color-white);
+}
+
+.weather-widget__condition {
+  color: rgba(255,255,255,0.82);
+}
+
+.weather-widget__icon {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 8px 18px rgba(0, 17, 34, 0.25));
+}
+
+.weather-widget__status {
+  min-height: 2.8em;
+  margin-top: 0.9rem;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.weather-widget__meta {
+  margin-top: 0.9rem;
+  color: rgba(255,255,255,0.62);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.weather-widget__meta code {
+  color: var(--color-white);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero__scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0));
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  50.1% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@media (max-width: 900px) {
+  .hero .container { grid-template-columns: 1fr; padding-block: 7rem 3rem; }
+  .hero__gauge-wrap { display: block; padding-bottom: 0; }
+  .weather-widget { max-width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .weather-widget {
+    padding: 1.1rem;
+  }
+
+  .weather-widget__summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .weather-widget__icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  .weather-widget__search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-widget__search .btn {
+    width: 100%;
+  }
+}
+
+/* -----------------------------
+   About preview / split sections
+------------------------------ */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+.split--reverse .split__media { order: 2; }
+@media (max-width: 900px) {
+  .split { grid-template-columns: 1fr; }
+  .split--reverse .split__media { order: 0; }
+}
+.split__media .media-placeholder { min-height: 420px; }
+.split__media { position: relative; }
+.split__media-badge {
+  position: absolute;
+  bottom: -1.5rem; left: -1.5rem;
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.5rem;
+  box-shadow: var(--shadow-strong);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+@media (max-width: 640px) { .split__media-badge { position: static; margin-top: 1rem; } }
+
+.pill-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-block: var(--space-md); }
+.pill-list li {
+  background: var(--color-light);
+  color: var(--color-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+}
+
+/* -----------------------------
+   Timeline (About page)
+------------------------------ */
+.timeline { position: relative; padding-left: var(--space-lg); }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--color-line);
+}
+.timeline__item { position: relative; padding-bottom: var(--space-lg); }
+.timeline__item:last-child { padding-bottom: 0; }
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1 * var(--space-lg) + 1px);
+  top: 4px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 3px solid var(--color-white);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+/* -----------------------------
+   Values grid (About)
+------------------------------ */
+.value-card {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  box-shadow: var(--shadow-soft);
+  height: 100%;
+}
+
+/* -----------------------------
+   Courses page — level path
+------------------------------ */
+.level-path {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+.level-path__step {
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink-50);
+}
+.level-path__step.is-current { background: var(--color-primary); color: var(--color-white); border-color: var(--color-primary); }
+.level-path__arrow { color: var(--color-ink-50); }
+
+.course-detail-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-lg);
+}
+@media (max-width: 900px) { .course-detail-grid { grid-template-columns: 1fr; } }
+
+.included-list li {
+  display: flex;
+  gap: 0.7rem;
+  padding-block: 0.55rem;
+  border-bottom: 1px dashed var(--color-line);
+  font-size: 0.94rem;
+}
+.included-list li:last-child { border-bottom: none; }
+.included-list svg { flex-shrink: 0; color: var(--color-accent); margin-top: 0.15rem; }
+
+.sticky-card { position: sticky; top: 110px; }
+
+/* -----------------------------
+   Instructors
+------------------------------ */
+.instructor-card { text-align: center; }
+.instructor-card .card__media { aspect-ratio: 3/4; }
+.instructor-card .card__body { align-items: center; text-align: center; }
+.instructor-card__role { color: var(--color-secondary); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.6rem; }
+.instructor-card__social { display: flex; gap: 0.6rem; margin-top: 0.8rem; }
+.instructor-card__social a {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--color-light);
+  color: var(--color-primary);
+  display: grid; place-items: center;
+}
+
+/* -----------------------------
+   Contact
+------------------------------ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-xl);
+}
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-info__item {
+  display: flex;
+  gap: 1rem;
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--color-line);
+}
+.contact-info__item:first-child { padding-top: 0; }
+
+.map-placeholder {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: var(--space-md);
+}
+.map-placeholder .media-placeholder { min-height: 260px; }
+
+/* -----------------------------
+   404 page
+------------------------------ */
+.error-page {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--gradient-depth);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+.error-page__code {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 20vw, 12rem);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.15));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.error-page__bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  animation: rise linear infinite;
+}
+@keyframes rise {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* -----------------------------
+   Trips / Dive Packages
+------------------------------ */
+.package-card { position: relative; }
+.package-card.is-featured { border: 2px solid var(--color-accent); }
+.package-card__ribbon {
+  position: absolute;
+  top: 1.2rem; right: -0.5rem;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.35rem 1rem;
+  z-index: 2;
+  border-radius: 6px 0 0 6px;
+}
+
+.trip-list-item {
+  display: flex;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--color-line);
+  align-items: flex-start;
+}
+.trip-list-item__media { width: 180px; flex-shrink: 0; border-radius: var(--radius-sm); overflow: hidden; }
+.trip-list-item__media .media-placeholder { min-height: 130px; border-radius: 0; }
+@media (max-width: 700px) {
+  .trip-list-item { flex-direction: column; }
+  .trip-list-item__media { width: 100%; }
+}
+
+/* -----------------------------
+   Newsletter
+------------------------------ */
+.newsletter {
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+.newsletter form { display: flex; gap: 0.8rem; flex: 1; min-width: 280px; max-width: 460px; }
+.newsletter input {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  font-size: 0.92rem;
+}
+@media (max-width: 700px) { .newsletter form { flex-direction: column; } }
+
+/* -----------------------------
+   About Page — Custom Backgrounds
+------------------------------ */
+.about-hero {
+  background: linear-gradient(180deg, #0096C7 0%, #005F90 40%, #002E5A 100%);
+}
+.about-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 100%, rgba(0, 180, 216, 0.25), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 90% 0%, rgba(202, 240, 248, 0.18), transparent 65%);
+  z-index: 1;
+}
+.about-hero .page-hero__media img {
+  opacity: 0.78;
+}
+.about-hero .page-hero__media::after {
+  background: linear-gradient(180deg, rgba(0,46,90,0.15) 0%, rgba(0,46,90,0) 45%, rgba(0,46,90,0.78) 100%);
+}
+
+.about-vision {
+  background:
+    linear-gradient(135deg, rgba(202, 240, 248, 0.55) 0%, rgba(247, 251, 252, 1) 55%, rgba(202, 240, 248, 0.35) 100%);
+}
+.about-vision::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(0, 119, 182, 0.08), transparent 45%);
+  pointer-events: none;
+}
+.about-vision .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* -----------------------------
+   Courses Page — Spacing + Section tweaks
+------------------------------ */
+.courses-l3 h3 {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+.courses-l3 .pill-list {
+  margin-block: 0 0.4rem;
+}
+.courses-l3 h3:first-of-type {
+  margin-top: var(--space-md);
+}

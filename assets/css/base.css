@@ -1,0 +1,298 @@
+/* ==========================================================================
+   MARSA ALAM FREEDIVERS — BASE STYLES
+   Design tokens, reset, typography, and layout utilities.
+   ========================================================================== */
+
+/* -----------------------------
+   Design Tokens
+------------------------------ */
+:root {
+  /* Brand colors */
+  --color-primary: #003B73;      /* deep ocean navy   */
+  --color-secondary: #0077B6;    /* mid reef blue     */
+  --color-accent: #00B4D8;       /* surface turquoise */
+  --color-bg: #F7FBFC;           /* page background   */
+  --color-light: #CAF0F8;        /* pale water tint   */
+  --color-text: #0B1F33;         /* body text         */
+
+  /* Derived surfaces */
+  --color-white: #ffffff;
+  --color-ink-70: rgba(11, 31, 51, 0.7);
+  --color-ink-50: rgba(11, 31, 51, 0.5);
+  --color-line: rgba(11, 31, 51, 0.1);
+
+  /* Glass / depth surfaces */
+  --glass-bg: rgba(247, 251, 252, 0.6);
+  --glass-bg-dark: rgba(0, 59, 115, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --shadow-soft: 0 20px 60px rgba(0, 59, 115, 0.12);
+  --shadow-strong: 0 30px 80px rgba(0, 59, 115, 0.28);
+
+  /* Gradients — the site's recurring "depth" gradient, surface to abyss */
+  --gradient-depth: linear-gradient(180deg, #00B4D8 0%, #0077B6 45%, #003B73 100%);
+  --gradient-depth-h: linear-gradient(90deg, #00B4D8 0%, #0077B6 50%, #003B73 100%);
+  --gradient-glass: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05));
+
+  /* Typography */
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+
+  --fs-hero: clamp(2.6rem, 6vw, 5.4rem);
+  --fs-h1: clamp(2.2rem, 4.4vw, 3.6rem);
+  --fs-h2: clamp(1.8rem, 3.2vw, 2.6rem);
+  --fs-h3: clamp(1.25rem, 2vw, 1.6rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8rem;
+
+  /* Spacing scale */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1.25rem;
+  --space-md: 2rem;
+  --space-lg: 3.5rem;
+  --space-xl: 6rem;
+  --space-2xl: 9rem;
+
+  /* Layout */
+  --container-max: 1240px;
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.25s;
+  --dur-med: 0.5s;
+  --dur-slow: 0.9s;
+}
+
+/* -----------------------------
+   Reset
+------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+
+img, picture, svg { display: block; max-width: 100%; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+a { color: inherit; text-decoration: none; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  font-size: var(--fs-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+p { color: var(--color-ink-70); }
+
+::selection { background: var(--color-accent); color: var(--color-white); }
+
+/* Visible focus state for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* -----------------------------
+   Layout utilities
+------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.section {
+  padding-block: var(--space-xl);
+  position: relative;
+}
+
+.section--tight { padding-block: var(--space-lg); }
+
+.section--dark {
+  background: var(--gradient-depth);
+  color: var(--color-white);
+}
+.section--dark h1, .section--dark h2, .section--dark h3 { color: var(--color-white); }
+.section--dark p { color: rgba(255,255,255,0.78); }
+
+.section--tint { background: var(--color-light); }
+
+.grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 980px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+
+/* -----------------------------
+   Typographic helpers
+------------------------------ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--color-accent);
+  display: inline-block;
+}
+
+.section--dark .eyebrow { color: var(--color-light); }
+.section--dark .eyebrow::before { background: var(--color-light); }
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: var(--space-lg);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.text-lead {
+  font-size: 1.15rem;
+  color: var(--color-ink-70);
+}
+
+.text-center { text-align: center; }
+.text-muted { color: var(--color-ink-50); }
+
+/* -----------------------------
+   Placeholder media blocks
+   (marks where real photography/video will be dropped in)
+------------------------------ */
+.media-placeholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-height: 220px;
+  isolation: isolate;
+}
+
+.media-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: none;
+  z-index: -1;
+}
+
+.media-placeholder span {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  max-width: 90%;
+  width: 90%;
+  height: 90%;
+  display: block;
+  overflow: hidden;
+}
+
+.media-placeholder span img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* -----------------------------
+   Reveal-on-scroll utility
+   (JS toggles .is-visible via IntersectionObserver)
+------------------------------ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal="fade"] { transform: none; }
+[data-reveal].is-visible[data-reveal-delay="1"] { transition-delay: 0.1s; }
+[data-reveal].is-visible[data-reveal-delay="2"] { transition-delay: 0.2s; }
+[data-reveal].is-visible[data-reveal-delay="3"] { transition-delay: 0.3s; }
+[data-reveal].is-visible[data-reveal-delay="4"] { transition-delay: 0.4s; }

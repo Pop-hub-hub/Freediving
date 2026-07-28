@@ -1,0 +1,44 @@
+/* ==========================================================================
+   MARSA ALAM FREEDIVERS — ANIMATION UTILITIES
+   Shared keyframes and helper classes used across pages.
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(14px, -18px) rotate(6deg); }
+}
+
+.anim-fade-in { animation: fadeIn var(--dur-slow) var(--ease-out) both; }
+.anim-slide-up { animation: slideUp var(--dur-slow) var(--ease-out) both; }
+.anim-zoom-in { animation: zoomIn var(--dur-slow) var(--ease-out) both; }
+
+.anim-delay-1 { animation-delay: 0.15s; }
+.anim-delay-2 { animation-delay: 0.3s; }
+.anim-delay-3 { animation-delay: 0.45s; }
+.anim-delay-4 { animation-delay: 0.6s; }
+
+.loaded .preload-fade { animation: fadeIn 1s var(--ease-out) both; }
+
+/* Page transition fade used by main.js on load */
+body.page-transition {
+  animation: fadeIn 0.5s var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-in, .anim-slide-up, .anim-zoom-in { animation: none !important; }
+}
